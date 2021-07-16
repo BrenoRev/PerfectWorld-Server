@@ -9,14 +9,33 @@
 <body>
 	<h1>Bem vindo ao curso de JSP</h1>
 	
-	<%
-		out.print("Seu sucesso garantido!");
-	%>
 	
 	<form action="ServeletLogin" method="post">
-		<input name="nome">
-		<input name="idade">
+		<table>
+<tr>
+	<td><label> Login</label></td>
+	<td>
+			<input type="text" name="login">
+	</td>
+</tr>
+
+<tr>
+	<td><label> Senha </label></td>
+	<td>
+		<input type="password" name="senha">
+	</td>
+</tr>
+
+<tr>
+	<td>
+	<td>
 		<input type="submit" value="enviar"></input>
+	</td>
+</tr>
+		</table>
+		
 	</form>
+	
+	<h4> ${msg} </h4>
 </body>
 </html>
