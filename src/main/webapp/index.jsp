@@ -36,6 +36,6 @@
 		
 	</form>
 	
-	<h4> ${msg} </h4>
+	<h4>${msg}</h4>
 </body>
 </html>
