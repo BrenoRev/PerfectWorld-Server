@@ -4,17 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Receber nomes</title>
+<title>Tela de Erros</title>
 </head>
 <body>
-	
+	<h1>Mensagem de Erro, entre em contato com a equipe de suporte do sistema.</h1>
 	<%
-	String nome = request.getParameter("nome");
-	out.println("nome: " +nome);
-	
-	String idade = request.getParameter("idade");
-	out.println("idade " + idade);
-	
+		out.print(request.getAttribute("msg"));
 	%>
+	
 </body>
 </html>

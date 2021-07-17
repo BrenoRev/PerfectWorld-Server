@@ -37,7 +37,7 @@ public class FilterAutenticacao implements Filter {
 	
 	// INTERCEPTA AS REQUISICOES E AS RESPOSTAS
 	// TUDO QUE FIZER NO SISTEMA VAI PASSAR POR ESSE MÉTODO
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException{
 		try {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
@@ -58,13 +58,15 @@ public class FilterAutenticacao implements Filter {
 		connection.commit(); // SE DER TUDO CERTO COMITA NO BANCO DE DADOS
 		}catch(Exception e) {
 			e.printStackTrace();
+			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
+			request.setAttribute("msg", e.getMessage());
+			redirecionar.forward(request, response);
 			try {
-				connection.rollback(); // SE DER ALGUM ERRO DA UM ROLLBACK
-			} catch (SQLException e1) {
+				connection.rollback();
+			}catch(SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-		
 	}
 
 	// É EXECUTADO QUANDO INICIA O SISTEMA
