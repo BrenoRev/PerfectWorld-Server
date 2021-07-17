@@ -58,13 +58,13 @@ public class ServeletLogin extends HttpServlet {
 					// EM CASO DE ERRO NA AUTENTICAÇÃO RETORNAR PRA MESMA PÁGINA
 					RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
 					// MENSAGEM DE ERRO
-					request.setAttribute("msg", "Informe o login e senha corretamente!");
+					request.setAttribute("msg", "Login ou senha incorreta!");
 					// FAZER O REDIRECIONAMENTO
 					redirecionar.forward(request, response);
 				}
 			} else {
 				RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
-				request.setAttribute("msg", "Informe o login e senha corretamente!");
+				request.setAttribute("msg", "Login ou senha incorreta!");
 				redirecionar.forward(request, response);
 			}
 
