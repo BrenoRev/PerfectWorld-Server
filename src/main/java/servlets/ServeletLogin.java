@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import dao.DAOLoginRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
