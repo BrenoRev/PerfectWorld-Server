@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import dao.DAOLoginRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +16,7 @@ import model.ModelLogin;
 @WebServlet(urlPatterns= {"/principal/ServeletLogin", "/ServeletLogin"}) // Mapemaneto da URL
 public class ServeletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private DAOLoginRepository daoLoginRepository = new DAOLoginRepository();
 
     public ServeletLogin() {
        
@@ -38,24 +40,28 @@ public class ServeletLogin extends HttpServlet {
 			modelLogin.setSenha(senha);
 			
 			// SIMULANDO O LOGIN
-			if(modelLogin.getLogin().equalsIgnoreCase("admin")
-				&& modelLogin.getSenha().equalsIgnoreCase("admin"))
-				{
-				// INFORMANDO UMA SESSÃO ABERTA DE USUARIO
-					request.getSession().setAttribute("usuario", modelLogin.getLogin());
-					
-					// SE A PAGINA NÃO FOR NULA VAI SER SETADA COMO A PAGINA PRINCIPAL
-					if(url == null || url.equals("null")) {
-						url = "/principal/principal.jsp";
-					}
-					
-					// REDIRECIONAR
-					RequestDispatcher redirecionar = request.getRequestDispatcher(url);
+			try {
+				if(daoLoginRepository.validarAutenticacao(modelLogin))
+					{
+					// INFORMANDO UMA SESSÃO ABERTA DE USUARIO
+						request.getSession().setAttribute("usuario", modelLogin.getLogin());
+						
+						// SE A PAGINA NÃO FOR NULA VAI SER SETADA COMO A PAGINA PRINCIPAL
+						if(url == null || url.equals("null")) {
+							url = "/principal/principal.jsp";
+						}
+						
+						// REDIRECIONAR
+						RequestDispatcher redirecionar = request.getRequestDispatcher(url);
+						redirecionar.forward(request, response);
+					}else {
+					RequestDispatcher redirecionar = request.getRequestDispatcher("/index.jsp");
+					request.setAttribute("msg", "Informe o login e senha correatmente!");
 					redirecionar.forward(request, response);
-				}else {
-				RequestDispatcher redirecionar = request.getRequestDispatcher("/index.jsp");
-				request.setAttribute("msg", "Informe o login e senha correatmente!");
-				redirecionar.forward(request, response);
+				}
+			} catch (SQLException | ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}else {
 			// EM CASO DE ERRO NA AUTENTICAÇÃO RETORNAR PRA MESMA PÁGINA
