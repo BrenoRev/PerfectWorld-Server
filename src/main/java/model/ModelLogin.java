@@ -7,25 +7,8 @@ public class ModelLogin implements Serializable{
 	
 	private String login;
 	private String senha;
-	private String nome;
+
 	
-	
-	
-	public ModelLogin() {
-		super();
-	}
-	public ModelLogin(String login, String senha, String nome) {
-		super();
-		this.login = login;
-		this.senha = senha;
-		this.nome = nome;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	public String getLogin() {
 		return login;
 	}
@@ -43,7 +26,7 @@ public class ModelLogin implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "ModelLogin [login=" + login + ", senha=" + senha + ", nome=" + nome + "]";
+		return "ModelLogin [login=" + login + ", senha=" + senha +"]";
 	}
 	
 	@Override
