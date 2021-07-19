@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+
 import dao.DAOLoginRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,8 +22,9 @@ public class ServeletLogin extends HttpServlet {
 	}
 
 	/* Recebe os dados pela URL em parametros */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println();	
+		doPost(request, response);
 	}
 
 	/* Recebe os dados enviados por um formulário */
