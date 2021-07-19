@@ -119,7 +119,7 @@
 											Screen
 									</a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html"> <i
+										href="ServeletLogin?acao=Logout"> <i
 											class="ti-layout-sidebar-left"></i> Logout
 									</a></li>
 								</ul></li>
@@ -150,7 +150,7 @@
 										<li class="more-details"><a href="user-profile.html"><i
 												class="ti-user"></i>View Profile</a> <a href="#!"><i
 												class="ti-settings"></i>Settings</a> <a
-											href="auth-normal-sign-in.html"><i
+											href="ServeletLogin?acao=Logout"><i
 												class="ti-layout-sidebar-left"></i>Logout</a></li>
 									</ul>
 								</div>
