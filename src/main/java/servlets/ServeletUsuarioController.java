@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +15,8 @@ import model.ModelLogin;
 @WebServlet("/ServeletUsuarioController")
 public class ServeletUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	private DAOUsuarioRepository daoUsuarioRepository = new DAOUsuarioRepository();
 	
     public ServeletUsuarioController() {
         // TODO Auto-generated constructor stub
@@ -26,8 +28,8 @@ public class ServeletUsuarioController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
 		ModelLogin modelLogin = new ModelLogin();
-		
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -42,9 +44,20 @@ public class ServeletUsuarioController extends HttpServlet {
 		modelLogin.setSenha(senha);
 		modelLogin.setLogin(login);
 		
+		daoUsuarioRepository.gravarUsuario(modelLogin);
+		
+		request.setAttribute("msg", "Conta criada com sucesso!  Faça seu login.");
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
-		request.setAttribute("modLogin", modelLo gin);
+		
+		// CRIA UM ATRIBUTO COM TODOS OS PARAMETROS PARA SER MOSTRADO NA TELA
+		request.setAttribute("modLogin", modelLogin);
 		redireciona.forward(request, response);
+	
+	}catch(Exception e) {
+		e.printStackTrace();
+		RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
+		request.setAttribute("msg", e.getMessage());
+		redirecionar.forward(request, response);
 	}
-
+	}
 }

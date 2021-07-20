@@ -101,11 +101,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                           
-                                               
-                                 
-                                   
+                                            <span style="color:green; padding-left: 30px;"> ${msg}</span>
+                                        </div>    
                                     <!-- Page-body end -->
                                 </div>
                                 <div id="styleSelector"> </div>
