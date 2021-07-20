@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-
+// CLASSE RESPONSÁVEL POR CONTROLAR O CADASTRO DE NOVOS USUARIOS
 @WebServlet("/ServeletUsuarioController")
 public class ServeletUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,6 +43,7 @@ public class ServeletUsuarioController extends HttpServlet {
 		modelLogin.setLogin(login);
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+		request.setAttribute("modLogin", modelLogin);
 		redireciona.forward(request, response);
 	}
 

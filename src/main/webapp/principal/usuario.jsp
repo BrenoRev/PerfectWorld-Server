@@ -1,3 +1,4 @@
+<%@page import="model.ModelLogin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -46,28 +47,28 @@
                                                     <div class="card-block">
                                                         <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController">
                                                          <div class="form-group form-danger form-static-label">
-                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly" autocomplete="off">
+                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly" autocomplete="off" value="${modLogin.id}">
                                                                 <span class="form-bd"></span>
                                                                 <label class="float-label">ID</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off">
+                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login</label>
                                                             </div>
                                                             
                                                             <div class="form-group form-default">
-                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off">
+                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off" value="${modLogin.senha}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Senha</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off">
+                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off" value="${modLogin.nome}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Nome</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off">
+                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off" value="${modLogin.email}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Email</label>
                                                             </div>
