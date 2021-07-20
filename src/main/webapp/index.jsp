@@ -60,7 +60,7 @@
 	<h1 id="inicio">Seja bem vindo!</h1>
 
 <div id="centro" class="col-md-6 offset-md-3">
-	<form action="ServeletLogin" method="post" class="row g-3 needs-validation" novalidate>
+	<form action="<%=request.getContextPath() %>/ServeletLogin" method="post" class="row g-3 needs-validation" novalidate>
 	
 	<input type="hidden" value="<%= request.getParameter("url")%>"name="url">
 	
