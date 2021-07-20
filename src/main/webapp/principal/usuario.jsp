@@ -44,40 +44,55 @@
                                                         <h5>CADASTRO DE JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form class="form-material">
+                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController">
                                                          <div class="form-group form-danger form-static-label">
-                                                                <input type="text" name="footer-email" class="form-control" required="">
+                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly" autocomplete="off">
                                                                 <span class="form-bd"></span>
                                                                 <label class="float-label">ID</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="footer-email" class="form-control" required="">
+                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Login</label>
+                                                            </div>
+                                                            
+                                                            <div class="form-group form-default">
+                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Senha</label>
+                                                            </div>
+                                                            <div class="form-group form-default">
+                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Nome</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="footer-email" class="form-control" required="">
+                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Email</label>
                                                             </div>
+                                                            
+                                                            
                                                              <div class="col-bg-12">
-                                                                        <select name="select" class="form-control">
-                                                                            <option value="opt1">Selecione sua classe</option>
-                                                                            <option value="opt2">Guerreiro</option>
-                                                                            <option value="opt3">Mago</option>
-                                                                            <option value="opt4">Barbaro</option>
-                                                                            <option value="opt5">Feiticeira</option>
-                                                                            <option value="opt6">Arqueiro</option>
-                                                                            <option value="opt7">Sacerdote</option>
-                                                                            <option value="opt8">Arcano</option>
-                                                                            <option value="opt9">Mistico</option>
-                                                                            <option value="opt10">Mercenario</option>
-                                                                            <option value="opt11">Espiritualista</option>
-                                                                            <option value="opt12">Tormentador</option>
-                                                                            <option value="opt13">Retalhador</option>
+                                                             <br>
+                                                             <p> Escolha sua classe </p>
+                                                                        <select name="classe" id="classe" class="form-control" required="required">
+                                                                            <option value="Guerreiro">Guerreiro</option>
+                                                                            <option value="Mago">Mago</option>
+                                                                            <option value="Barbaro">Barbaro</option>
+                                                                            <option value="Feiticeira">Feiticeira</option>
+                                                                            <option value="Arqueiro">Arqueiro</option>
+                                                                            <option value="Sacerdote">Sacerdote</option>
+                                                                            <option value="Arcano">Arcano</option>
+                                                                            <option value="Mistico">Mistico</option>
+                                                                            <option value="Mercenario">Mercenario</option>
+                                                                            <option value="Espiritualista">Espiritualista</option>
+                                                                            <option value="Tormentador">Tormentador</option>
+                                                                            <option value="Retalhador">Retalhador</option>
                                                                         </select>
                                                                </div>
-
+																<br>
+																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Confirmar Dados</button>
 
 
@@ -101,6 +116,7 @@
         </div>
     </div>
    
+   </div>
    
 <jsp:include page="javascriptfile.jsp"></jsp:include>
 </body>

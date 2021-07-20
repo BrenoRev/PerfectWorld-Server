@@ -5,10 +5,39 @@ import java.io.Serializable;
 public class ModelLogin implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
+	private String nome;
+	private String email;
 	private String login;
 	private String senha;
+	private String classe;
 
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getClasse() {
+		return classe;
+	}
+	public void setClasse(String classe) {
+		this.classe = classe;
+	}
 	public String getLogin() {
 		return login;
 	}
@@ -24,17 +53,18 @@ public class ModelLogin implements Serializable{
 	
 	
 	
+	
+	
 	@Override
 	public String toString() {
-		return "ModelLogin [login=" + login + ", senha=" + senha +"]";
+		return "ModelLogin [id=" + id + ", nome=" + nome + ", email=" + email + ", login=" + login + ", senha=" + senha
+				+ ", classe=" + classe + "]";
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 	@Override
@@ -46,18 +76,16 @@ public class ModelLogin implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ModelLogin other = (ModelLogin) obj;
-		if (login == null) {
-			if (other.login != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 	
 
