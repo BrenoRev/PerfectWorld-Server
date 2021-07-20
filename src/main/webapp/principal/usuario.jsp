@@ -46,11 +46,6 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController">
-                                                         <div class="form-group form-danger form-static-label">
-                                                                <input type="text" name="id" id="id" class="form-control" readonly="readonly" autocomplete="off" value="${modLogin.id}">
-                                                                <span class="form-bd"></span>
-                                                                <label class="float-label">ID</label>
-                                                            </div>
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>
@@ -101,7 +96,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span style="color:green; padding-left: 30px;"> ${msg}</span>
+                                            <span style="color:black; padding-left: 30px;"> ${msg}</span>
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>

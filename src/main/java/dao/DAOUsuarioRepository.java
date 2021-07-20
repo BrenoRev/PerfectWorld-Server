@@ -53,4 +53,17 @@ public class DAOUsuarioRepository {
 		
 		return modelLogin;
 	}
+	
+	public boolean validarLogin(String login) throws SQLException {
+
+			String sql = "select count(1) from model_login where upper(login) = upper('"+login+"')";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				return true;
+			}
+			return false;
+			
+	}
 }
