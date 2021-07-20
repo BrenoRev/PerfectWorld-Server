@@ -38,7 +38,7 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
-                                              <h1>Conteudo das páginas do sistema</h1>
+                                              <h1>Cadastro de usuario</h1>
                                         </div>
                                     </div>
                                     <!-- Page-body end -->
