@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 // CLASSE RESPONSÁVEL POR CONTROLAR O CADASTRO DE NOVOS USUARIOS
-@WebServlet("/ServeletUsuarioController")
-public class ServeletUsuarioController extends HttpServlet {
+@WebServlet("/ServeletRegistroController")
+public class ServeletRegistroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private DAOUsuarioRepository daoUsuarioRepository = new DAOUsuarioRepository();
 	
-    public ServeletUsuarioController() {
+    public ServeletRegistroController() {
         // TODO Auto-generated constructor stub
     }
     

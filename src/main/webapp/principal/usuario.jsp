@@ -45,7 +45,7 @@
                                                         <h5>CADASTRO DE JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController" id="formUser">
+                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletRegistroController" id="formUser">
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>

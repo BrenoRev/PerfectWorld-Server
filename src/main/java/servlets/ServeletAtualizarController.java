@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-// CLASSE RESPONSÁVEL POR CONTROLAR O CADASTRO DE NOVOS USUARIOS
+// CLASSE RESPONSÁVEL POR CONTROLAR A ATUALIZAÇÃO DE USUARIOS
 @WebServlet("/ServeletAtualizarController")
 public class ServeletAtualizarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

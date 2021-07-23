@@ -16,10 +16,8 @@ public class DAOUsuarioRepository {
 		connection = SingleConnectionBanco.getConnection();
 	}
 	
-	
 	public ModelLogin gravarUsuario(ModelLogin modelLogin) throws SQLException {
 				
-		
 		String sql = "INSERT INTO public.model_login(login, senha, email, nome, classe) "
 				+ "VALUES (?, ?, ?, ?, ?)";
 		
@@ -30,8 +28,9 @@ public class DAOUsuarioRepository {
 			statement.setString(4, modelLogin.getNome());
 			statement.setString(5, modelLogin.getClasse());
 			
-			statement.executeQuery();
-
+			statement.execute();
+			connection.commit();
+			
 	return this.consultaUsuario(modelLogin.getLogin());
 }
 
@@ -55,6 +54,7 @@ public class DAOUsuarioRepository {
 		return modelLogin;
 	}
 	
+	
 	public boolean validarLogin(String login) throws SQLException {
 
 			String sql = "select count(1) from model_login where upper(login) = upper('"+login+"')";
@@ -71,7 +71,7 @@ public class DAOUsuarioRepository {
 
 	public void atualizarUsuario(ModelLogin modelLogin) throws SQLException {
 		// ATUALIZAR O USUARIO NO BANCO DE DADOS
-		
+		try {
 		String sql = "UPDATE model_login SET login=?, senha=?, email=?, nome=?, classe=? WHERE login='" + modelLogin.getLogin()+"';";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, modelLogin.getLogin());
@@ -82,6 +82,21 @@ public class DAOUsuarioRepository {
 			
 			statement.executeUpdate();
 			connection.commit();
+		}catch(Exception e){
+			connection.rollback();
+			e.printStackTrace();
+		}
 			
 	}
+	
+
+	public void deletarUSuario(String idUser) throws SQLException {
+		// DELETAR O USUARIO NO BANCO DE DADOS
+			
+				String sql = "DELETE FROM model_login WHERE id='"+idUser+"'";
+					PreparedStatement statement = connection.prepareStatement(sql);		
+					statement.executeUpdate();
+					connection.commit();
+				
 	}
+}
