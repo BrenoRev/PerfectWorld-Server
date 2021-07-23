@@ -61,7 +61,7 @@ public class DAOUsuarioRepository {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
-				return true;
+				return resultSet.getInt(1) >= 1;
 			}
 			return false;
 			

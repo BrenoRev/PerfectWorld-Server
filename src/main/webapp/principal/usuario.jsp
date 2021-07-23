@@ -96,7 +96,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span style="color:black; padding-left: 30px;"> ${msg}</span>
+                                            <span style="color:black; border: 5px solid red;font-size:16px;font-weight:600; margin-left: 10px;padding: 30px;"> ${msg}</span>
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>

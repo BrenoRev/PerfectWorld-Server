@@ -29,9 +29,9 @@ public class ServeletUsuarioController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			String msg = "Conta criada com sucesso!  Faça seu login.";
+			String msg = "Conta criada com sucesso!";
 		ModelLogin modelLogin = new ModelLogin();
-
+		ModelLogin mok = new ModelLogin();
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -47,17 +47,17 @@ public class ServeletUsuarioController extends HttpServlet {
 		
 		if(!daoUsuarioRepository.validarLogin(modelLogin.getLogin())) {
 			daoUsuarioRepository.gravarUsuario(modelLogin);
-			
-			
+			//request.setAttribute("modLogin", mok);
 		}
 		else {
+			//request.setAttribute("modLogin", modelLogin);
 			msg = "Já existe um usuário com o mesmo login.";
 		}
 		request.setAttribute("msg", msg);
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
 		
 		// CRIA UM ATRIBUTO COM TODOS OS PARAMETROS PARA SER MOSTRADO NA TELA
-		request.setAttribute("modLogin", modelLogin);
+		
 		redireciona.forward(request, response);
 	
 	}catch(Exception e) {
