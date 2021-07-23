@@ -56,7 +56,7 @@
                                                             </div>
 																<br>
 																<br>
-         											  	 <button type="button" class="btn waves-effect waves-light btn-primary btn-skew" onclick="deleteAjax()">Deletar</button>
+         											  	 <button type="button" class="btn waves-effect waves-light btn-primary btn-skew" onclick="criarDelete()">Deletar</button>
 
 
                                                     	</form>

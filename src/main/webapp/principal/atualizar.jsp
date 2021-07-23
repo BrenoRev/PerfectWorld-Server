@@ -90,7 +90,7 @@
 																<br>
 																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Atualizar os dados.</button>
-														<button class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
+														<button type="button" class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
 
                                                     	</form>
                                                     </div>
