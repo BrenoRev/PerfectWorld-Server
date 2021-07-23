@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import connection.SingleConnectionBanco;
 import model.ModelLogin;
+import servlets.ServeletLogin;
 
 public class DAOUsuarioRepository {
 
@@ -18,6 +19,7 @@ public class DAOUsuarioRepository {
 	
 	
 	public ModelLogin gravarUsuario(ModelLogin modelLogin) throws SQLException {
+				
 		
 		String sql = "INSERT INTO public.model_login(login, senha, email, nome, classe) "
 				+ "VALUES (?, ?, ?, ?, ?)";
@@ -29,11 +31,11 @@ public class DAOUsuarioRepository {
 			statement.setString(4, modelLogin.getNome());
 			statement.setString(5, modelLogin.getClasse());
 			
-			statement.execute();
-			connection.commit();
+			statement.executeQuery();
 
-			return this.consultaUsuario(modelLogin.getLogin());
-	}
+	return this.consultaUsuario(modelLogin.getLogin());
+}
+
 	
 	public ModelLogin consultaUsuario(String login) throws SQLException {
 		ModelLogin modelLogin = new ModelLogin(); 
@@ -66,4 +68,21 @@ public class DAOUsuarioRepository {
 			return false;
 			
 	}
-}
+
+
+	public void atualizarUsuario(ModelLogin modelLogin) throws SQLException {
+		// ATUALIZAR O USUARIO NO BANCO DE DADOS
+		
+		String sql = "UPDATE model_login SET login=?, senha=?, email=?, nome=?, classe=? WHERE login='" + modelLogin.getLogin()+"';";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, modelLogin.getLogin());
+			statement.setString(2, modelLogin.getSenha());
+			statement.setString(3, modelLogin.getEmail());
+			statement.setString(4, modelLogin.getNome());
+			statement.setString(5, modelLogin.getClasse());
+			
+			statement.executeUpdate();
+			connection.commit();
+			
+	}
+	}

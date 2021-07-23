@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 // CLASSE RESPONSÁVEL POR CONTROLAR O CADASTRO DE NOVOS USUARIOS
-@WebServlet("/ServeletUsuarioController")
-public class ServeletUsuarioController extends HttpServlet {
+@WebServlet("/ServeletAtualizarController")
+public class ServeletAtualizarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private DAOUsuarioRepository daoUsuarioRepository = new DAOUsuarioRepository();
 	
-    public ServeletUsuarioController() {
+    public ServeletAtualizarController() {
         // TODO Auto-generated constructor stub
     }
     
@@ -29,7 +29,7 @@ public class ServeletUsuarioController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			String msg;
+		
 		ModelLogin modelLogin = new ModelLogin();
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -37,27 +37,19 @@ public class ServeletUsuarioController extends HttpServlet {
 		String classe = request.getParameter("classe");
 		String login = request.getParameter("login");
 		
-		
+		modelLogin.setLogin(login);
 		modelLogin.setNome(nome);
 		modelLogin.setEmail(email);
 		modelLogin.setClasse(classe);
 		modelLogin.setSenha(senha);
-		modelLogin.setLogin(login);
 		
-		if(daoUsuarioRepository.validarLogin(modelLogin.getLogin())) {
-			msg = "Já existe um usuário com o mesmo login.";
-		}
-		else {
-			if(modelLogin.isNovo()) {
-				msg = "Conta criada com sucesso!";
-			}else {
-				msg = "Atualizado com sucesso!";
-			}
-			daoUsuarioRepository.gravarUsuario(modelLogin);
-		}
-		
+
+				
+			String msg = "Usuario "+login+" atualizado com sucesso!";
+			daoUsuarioRepository.atualizarUsuario(modelLogin);
+
 		request.setAttribute("msg", msg);
-		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+		RequestDispatcher redireciona = request.getRequestDispatcher("principal/atualizar.jsp");
 		
 		// CRIA UM ATRIBUTO COM TODOS OS PARAMETROS PARA SER MOSTRADO NA TELA
 		

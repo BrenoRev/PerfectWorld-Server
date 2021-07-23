@@ -53,12 +53,14 @@ public class ServeletLogin extends HttpServlet {
 				ModelLogin modelLogin = new ModelLogin();
 				modelLogin.setLogin(login);
 				modelLogin.setSenha(senha);
+				
 				// SIMULANDO O LOGIN
 
 				if (daoLoginRepository.validarAutenticacao(modelLogin)) {
 					// INFORMANDO UMA SESSÃO ABERTA DE USUARIO
 					request.getSession().setAttribute("usuario", modelLogin.getLogin());
-
+					
+					
 					// SE A PAGINA NÃO FOR NULA VAI SER SETADA COMO A PAGINA PRINCIPAL
 					if (url == null || url.equals("null")) {
 						url = "/principal/principal.jsp";

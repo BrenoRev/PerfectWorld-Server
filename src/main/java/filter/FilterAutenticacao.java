@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {"/principal/*"})
 public class FilterAutenticacao implements Filter {
 	
+
 	private static Connection connection;
 	
     public FilterAutenticacao() {
@@ -34,6 +35,7 @@ public class FilterAutenticacao implements Filter {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	// INTERCEPTA AS REQUISICOES E AS RESPOSTAS
 	// TUDO QUE FIZER NO SISTEMA VAI PASSAR POR ESSE MÉTODO

@@ -42,12 +42,12 @@
                                             <div class="col-md-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>CADASTRO DE JOGADOR</h5>
+                                                        <h5>ATUALIZAR DADOS DO JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController">
-                                                            <div class="form-group form-default">
-                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
+                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletAtualizarController">
+                                                            <div class="form-group form-default form-static-label">
+                                                                <input type="text" name="login" id="login" class="form-control" readonly="readonly" autocomplete="off" value=<%= request.getSession().getAttribute("usuario") %>>
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login</label>
                                                             </div>
@@ -55,23 +55,23 @@
                                                             <div class="form-group form-default">
                                                                 <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off" value="${modLogin.senha}">
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Senha</label>
+                                                                <label class="float-label">Nova Senha</label>
                                                             </div>
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off" value="${modLogin.nome}">
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Nome</label>
+                                                                <label class="float-label">Novo Nome</label>
                                                             </div>
                                                             <div class="form-group form-default">
                                                                 <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off" value="${modLogin.email}">
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Email</label>
+                                                                <label class="float-label">Novo Email</label>
                                                             </div>
                                                             
                                                             
                                                              <div class="col-bg-12">
                                                              <br>
-                                                             <p> Escolha sua classe </p>
+                                                             <p> Escolha sua nova classe </p>
                                                                         <select name="classe" id="classe" class="form-control" required="required">
                                                                             <option value="Guerreiro">Guerreiro</option>
                                                                             <option value="Mago">Mago</option>
@@ -89,14 +89,14 @@
                                                                </div>
 																<br>
 																<br>
-         											   <button class="btn waves-effect waves-light btn-primary btn-skew">Cadastrar</button>
+         											   <button class="btn waves-effect waves-light btn-primary btn-skew">Atualizar os dados.</button>
 
 
                                                     	</form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span style="color:black; border: 5px solid red;font-size:16px;font-weight:600; margin-left: 10px;padding: 30px;"> ${msg}</span>
+                                            <span> ${msg}</span>
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>

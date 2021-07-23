@@ -12,7 +12,13 @@ public class ModelLogin implements Serializable{
 	private String senha;
 	private String classe;
 
-	
+	public boolean isNovo() {
+		if(this.login == null) {
+			return true; // INSERIR UM NOVO
+		}else{
+			return false; // ATUALIZAR
+		}
+	}
 	
 	public Long getId() {
 		return id;
