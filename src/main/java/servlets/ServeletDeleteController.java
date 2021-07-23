@@ -27,6 +27,7 @@ public class ServeletDeleteController extends HttpServlet {
 		String msg;
 		String acao = request.getParameter("acao");
 		
+		// DELETE USANDO O METHOD GET DO FORMULÁRIO
 		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 			String idUser = request.getParameter("id");
 			if(daoUsuarioRepository.deletarUSuario(idUser) == 1) {
@@ -36,8 +37,22 @@ public class ServeletDeleteController extends HttpServlet {
 				msg = "Usuário invalido.";
 			}
 			request.setAttribute("msg", msg);
+			
+			// DELETE USANDO O AJAX
+		}else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarajax")) {
+			String idUser = request.getParameter("id");
+			if(daoUsuarioRepository.deletarUSuario(idUser) == 1) {
+				daoUsuarioRepository.deletarUSuario(idUser);
+				msg = "Usuário excluído com sucesso!";
+			}else {
+				msg = "Usuário invalido.";
+			}
+			
+			response.getWriter().write(msg);
 		}
+		
 		request.getRequestDispatcher("principal/deletar.jsp").forward(request, response);
+		
 	}catch(Exception e) {
 		e.printStackTrace();
 		RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");

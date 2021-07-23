@@ -56,14 +56,14 @@
                                                             </div>
 																<br>
 																<br>
-         											  	 <button type="button" class="btn waves-effect waves-light btn-primary btn-skew" onclick="criarDelete()">Deletar</button>
+         											  	 <button type="button" class="btn waves-effect waves-light btn-primary btn-skew" onclick="deleteAjax()">Deletar</button>
 
 
                                                     	</form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span> ${msg}</span>
+                                            <span id="msg"> ${msg}</span>
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>
@@ -81,6 +81,31 @@
 <jsp:include page="javascriptfile.jsp"></jsp:include>
 
 <script type="text/javascript">
+
+function deleteAjax() {
+    
+    if (confirm('Deseja realmente excluir os dados?')){
+	
+	 var urlAction = document.getElementById('formUser').action;
+	 var idUser = document.getElementById('id').value;
+	 
+	 $.ajax({
+	     
+	     method: "get",
+	     url : urlAction,
+	     data : "id=" + idUser + '&acao=deletarajax',
+	     success: function (response) {
+	     }
+	     
+	 }).fail(function(xhr, status, errorThrown){
+	    alert('Erro ao deletar usuário por id: ' + xhr.responseText);
+	 });
+	 
+	  
+    }
+    
+}
+
 
 function criarDelete(){
 	// PEDE A CONFIRMAÇÃO ANTES DE REALIZAR A AÇÃO
