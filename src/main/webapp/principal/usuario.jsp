@@ -128,7 +128,29 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+      
+        <div class="input-group">
+  <input type="text" class="form-control" id="input" placeholder="Nome" aria-label="Nome do usuário" aria-describedby="basic-addon2">
+  		<div class="input-group-append">
+    <button class="btn btn-success" type="button" onclick="buscarUsuario()">Pesquisar</button>
+    <button class="btn btn-danger" type="button" onclick="limparInput()">Limpar</button>
+  		</div>
+		</div>
+		
+		<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">ID</th>
+  			<th scope="col">Nome</th>
+  			<th scope="col">Classe</th>
+  			<th scope="col">#</th>
+  		</tr>
+		</thead>
+  <tbody>
+  		
+  </tbody>
+		</table>
+  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -148,6 +170,20 @@ function limparForm(){
 			elementos[p].value = '';
 		}
 			
+}
+
+function limparInput(){
+		var input = document.getElementById("input").value= '';
+}
+
+function buscarUsuario(){
+	var nome = document.getElementById("input").value;
+	
+	if(nome != null && nome != '' && nome.trim() != ''){
+		alert(nome);
+	}else{
+		alert("Campo de nome vázio!")
+	}
 }
 
 </script>
