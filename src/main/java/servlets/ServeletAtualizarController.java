@@ -42,14 +42,12 @@ public class ServeletAtualizarController extends HttpServlet {
 		modelLogin.setEmail(email);
 		modelLogin.setClasse(classe);
 		modelLogin.setSenha(senha);
-		
-
 				
-			String msg = "Usuario "+login+" atualizado com sucesso!";
+			String msg = "Usuario "+login+" atualizado com sucesso!. \n Faça o login novamente utilizando os novos dados.";
 			daoUsuarioRepository.atualizarUsuario(modelLogin);
 
 		request.setAttribute("msg", msg);
-		RequestDispatcher redireciona = request.getRequestDispatcher("principal/atualizar.jsp");
+		RequestDispatcher redireciona = request.getRequestDispatcher("index.jsp");
 		
 		// CRIA UM ATRIBUTO COM TODOS OS PARAMETROS PARA SER MOSTRADO NA TELA
 		

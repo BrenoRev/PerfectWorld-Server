@@ -45,7 +45,7 @@
                                                         <h5>CADASTRO DE JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController">
+                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletUsuarioController" id="formUser">
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>
@@ -90,13 +90,14 @@
 																<br>
 																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Cadastrar</button>
+         											    <button class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
 
 
                                                     	</form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span style="color:black; border: 5px solid red;font-size:16px;font-weight:600; margin-left: 10px;padding: 30px;"> ${msg}</span>
+                                            <span> ${msg}</span>
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>
@@ -112,6 +113,19 @@
    </div>
    
 <jsp:include page="javascriptfile.jsp"></jsp:include>
+
+<script type="text/javascript">
+
+// LIMPAR TODOS OS DADOS DO FORMULARIO
+function limparForm(){
+		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
+		for(p=0; p<elementos.length; p++){
+			elementos[p].value = '';
+		}
+			
+}
+
+</script>
 </body>
 
 </html>

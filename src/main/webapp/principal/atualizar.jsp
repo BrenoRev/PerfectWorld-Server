@@ -45,9 +45,9 @@
                                                         <h5>ATUALIZAR DADOS DO JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletAtualizarController">
+                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletAtualizarController" id="formUser">
                                                             <div class="form-group form-default form-static-label">
-                                                                <input type="text" name="login" id="login" class="form-control" readonly="readonly" autocomplete="off" value=<%= request.getSession().getAttribute("usuario") %>>
+                                                                <input type="text" name="login" id="login" class="form-control" readonly="readonly" autocomplete="off" value=<%= request.getSession().getAttribute("usuario") %> >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login</label>
                                                             </div>
@@ -90,7 +90,7 @@
 																<br>
 																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Atualizar os dados.</button>
-
+														<button class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
 
                                                     	</form>
                                                     </div>
@@ -112,6 +112,18 @@
    </div>
    
 <jsp:include page="javascriptfile.jsp"></jsp:include>
+<script type="text/javascript">
+
+// LIMPAR TODOS OS DADOS DO FORMULARIO
+function limparForm(){
+		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
+		for(p=0; p<elementos.length; p++){
+			elementos[p].value = '';
+		}
+			
+}
+
+</script>
 </body>
 
 </html>

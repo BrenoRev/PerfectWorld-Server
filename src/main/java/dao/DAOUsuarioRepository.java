@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import connection.SingleConnectionBanco;
 import model.ModelLogin;
-import servlets.ServeletLogin;
 
 public class DAOUsuarioRepository {
 
