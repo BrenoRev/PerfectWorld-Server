@@ -90,13 +90,21 @@ public class DAOUsuarioRepository {
 	}
 	
 
-	public void deletarUSuario(String idUser) throws SQLException {
+	public int deletarUSuario(String idUser){
 		// DELETAR O USUARIO NO BANCO DE DADOS
-			
+			try {
 				String sql = "DELETE FROM model_login WHERE id='"+idUser+"'";
 					PreparedStatement statement = connection.prepareStatement(sql);		
-					statement.executeUpdate();
-					connection.commit();
-				
+					
+					if(statement.executeUpdate() > 0) {
+						statement.executeUpdate();
+						connection.commit();
+						return 1;
+					}else {
+						return 0;
+					}
+			}catch(Exception e) {
+				return 0;
+			}
 	}
 }

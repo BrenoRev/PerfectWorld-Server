@@ -29,12 +29,14 @@ public class ServeletDeleteController extends HttpServlet {
 		
 		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 			String idUser = request.getParameter("id");
-			daoUsuarioRepository.deletarUSuario(idUser);
-			msg = "Usuário excluído com sucesso!";
-		}else {
-			msg = "Usuário invalido.";
+			if(daoUsuarioRepository.deletarUSuario(idUser) == 1) {
+				daoUsuarioRepository.deletarUSuario(idUser);
+				msg = "Usuário excluído com sucesso!";
+			}else {
+				msg = "Usuário invalido.";
+			}
+			request.setAttribute("msg", msg);
 		}
-		request.setAttribute("msg", msg);
 		request.getRequestDispatcher("principal/deletar.jsp").forward(request, response);
 	}catch(Exception e) {
 		e.printStackTrace();

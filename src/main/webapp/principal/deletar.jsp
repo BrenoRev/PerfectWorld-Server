@@ -83,9 +83,12 @@
 <script type="text/javascript">
 
 function criarDelete(){
+	// PEDE A CONFIRMAÇÃO ANTES DE REALIZAR A AÇÃO
+	if(confirm("Deseja realmente excluir o registro?")){
 	document.getElementById("formUser").method= 'get';
 	document.getElementById("acao").value = 'deletar';
 	document.getElementById("formUser").submit();
+	}
 }
 </script>
 </body>
