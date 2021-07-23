@@ -23,9 +23,17 @@ public class ServeletRegistroController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		String acao = request.getParameter("acao");
+		// DELETE USANDO O AJAX
+	if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUser")) {
+		String nomeBusca = request.getParameter("nomeBusca");
+		System.out.println(nomeBusca);
+		//daoUsuarioRepository.deletarUSuario() {	
 	}
-
+	
+	request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {

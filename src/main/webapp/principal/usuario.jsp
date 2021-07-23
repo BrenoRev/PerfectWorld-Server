@@ -180,9 +180,23 @@ function buscarUsuario(){
 	var nome = document.getElementById("input").value;
 	
 	if(nome != null && nome != '' && nome.trim() != ''){
-		alert(nome);
-	}else{
-		alert("Campo de nome vázio!")
+
+		 var urlAction = document.getElementById('formUser').action;
+		
+		 $.ajax({
+		     
+		     method: "get",
+		     url : urlAction,
+		     data : "nomeBusca=" + nome + '&acao=buscarUser',
+		     
+		     success: function (response) {
+		    	 limparInput();
+		     }
+		     
+		 }).fail(function(xhr, status, errorThrown){
+		    alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
+		 });
+		
 	}
 }
 
