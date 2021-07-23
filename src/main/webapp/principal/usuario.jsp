@@ -1,8 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="servlets.ServeletRegistroController"%>
 <%@page import="model.ModelLogin"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -46,6 +49,7 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <form method="post" class="form-material"  id="formUser" action="<%= request.getContextPath()%>/ServeletRegistroController">
+                                                    	    <input type="hidden" name="acao" id="acao" value="">
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>
@@ -114,6 +118,7 @@
    
    </div>
    
+
    
    <div class="modal fade" id="ModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -127,30 +132,36 @@
       <div class="modal-body">
       
         <div class="input-group">
-  <input type="text" class="form-control" id="input" placeholder="Nome" aria-label="Nome do usuário" aria-describedby="basic-addon2">
+  <input type="text" class="form-control" id="input" placeholder="Nome" aria-label="nome" aria-describedby="basic-addon2">
   		<div class="input-group-append">
-    <button class="btn btn-success" type="button" onclick="buscarUsuario()">Pesquisar</button>
-    <button class="btn btn-danger" type="button" onclick="limparInput()">Limpar</button>
+    <button class="btn btn-success" type="button" onclick="buscarUsuario();">Pesquisar</button>
+    <button class="btn btn-danger" type="button" onclick="limparInput();">Limpar</button>
   		</div>
 		</div>
 		<div style="height: 300px; overflow:scroll;">
+		
 		<table class="table" id="tabelaresultados">
 		<thead>
 		<tr>
-			<th scope="col">ID</th>
-  			<th scope="col">Nome</th>
-  			<th scope="col">Classe</th>
-  			<th scope="col">#</th>
+		<td>ID</td>
+		<td>Nome</td>
+		<td>Classe</td>
+		<td>#</td>
   		</tr>
 		</thead>
   <tbody>
-  		<tr>
-  		<td> *********** </td>
-  		<td> *********** </td>
-  		<td> *********** </td>
-  		<td> *********** </td>
-  		</tr>
-  		
+<%
+List<ModelLogin> lista = (List) request.getAttribute("lista");
+%>
+
+  <c:forEach var="registro" items="${lista}">
+  	<tr>
+  		<td>${registro.id}</td>
+  		<td>${registro.nome}</td>
+  		<td>${registro.classe}</td>	
+  	</tr>
+  </c:forEach>
+  	
   </tbody>
 		</table>
   </div>
@@ -162,9 +173,12 @@
   </div>
 </div>
 
+
+
 <jsp:include page="javascriptfile.jsp"></jsp:include>
 
 <script type="text/javascript">
+
 // LIMPAR TODOS OS DADOS DO FORMULARIO
 function limparForm(){
 		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
@@ -177,43 +191,27 @@ function limparForm(){
 function limparInput(){
 		var input = document.getElementById("input").value= '';
 }
-
-/*
   
   function buscarUsuario(){
 	var nome = document.getElementById("input").value;
 	
 	if(nome != null && nome != '' && nome.trim() != ''){
 		 var urlAction = document.getElementById('formUser').action;
-		
 		 $.ajax({
 		     
 		     method: "get",
 		     url : urlAction,
 		     data : "nome=" + nome + '&acao=buscarUser',
 		     success: function (response) {
-			 
-			 var json = JSON.parse(response);
-			 
-			 
-			 $('#tabelaresultados > tbody > tr').remove();
-			 
-			  for(var p = 0; p < json.length; p++){
-			      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+<td>'+json[p].classe+'</td>+'</td> <td><button type="button" class="btn btn-info">Ver</button></td></tr>');
-			  }
-			  
-			  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
-			 
-		     }
-		     
+		    	 alert("sucesso");
+		     }	 
+		 
 		 }).fail(function(xhr, status, errorThrown){
-		    alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
+		    alert('Erro ao buscar usuário por nome: ' + xhr.responseText + status + errorThrown);
 		 });
 		
 	}
 }
- 
- */
  
 </script>
 </body>

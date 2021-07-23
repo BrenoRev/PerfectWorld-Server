@@ -1,9 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
@@ -28,20 +27,19 @@ public class ServeletRegistroController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 		String acao = request.getParameter("acao");
-		// DELETE USANDO O AJAX
 	if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUser")) {
 		String nomeBusca = request.getParameter("nome");
-		List<ModelLogin> dadosJsonUser = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
+		List<ModelLogin> listaNomes = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
+		request.setAttribute("lista", listaNomes);
 		
-		// FAZER O MAPEMENTO DOS OBJETOS PARA APRESENTAR NA LISTA DO BOOTSTRAP
-		ObjectMapper mapper = new ObjectMapper();
-		// RECEBER TODOS OS DADOS DA LISTA EM FORMA DE JSON [ STRING ] 
-		String json = mapper.writeValueAsString(dadosJsonUser);
-		// PASSAR NO JSON O QUE ESCREVER
-		response.getWriter().write(json);
+
+		System.out.println("lista nomes: " + listaNomes);
+		System.out.println("nome busca: "+ nomeBusca);
+		System.out.println("acao: " +acao);
+	
 	}
 	
-	request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+	//request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 	}catch(Exception e) {
 			e.printStackTrace();
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
