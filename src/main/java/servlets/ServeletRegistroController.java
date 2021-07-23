@@ -30,7 +30,7 @@ public class ServeletRegistroController extends HttpServlet {
 		String acao = request.getParameter("acao");
 		// DELETE USANDO O AJAX
 	if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUser")) {
-		String nomeBusca = request.getParameter("nomeBusca");
+		String nomeBusca = request.getParameter("nome");
 		List<ModelLogin> dadosJsonUser = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
 		
 		// FAZER O MAPEMENTO DOS OBJETOS PARA APRESENTAR NA LISTA DO BOOTSTRAP

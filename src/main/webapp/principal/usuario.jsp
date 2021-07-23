@@ -4,7 +4,7 @@
     
     
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 
 <jsp:include page="head.jsp"></jsp:include>
@@ -45,7 +45,7 @@
                                                         <h5>CADASTRO DE JOGADOR</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="post" class="form-material" action="<%= request.getContextPath()%>/ServeletRegistroController" id="formUser">
+                                                        <form method="post" class="form-material"  id="formUser" action="<%= request.getContextPath()%>/ServeletRegistroController">
                                                             <div class="form-group form-default">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
                                                                 <span class="form-bar"></span>
@@ -91,11 +91,9 @@
 																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Cadastrar</button>
          											    <button type="button" class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
-															
 															<button type="button" class="btn waves-effect waves-light btn-info btn-skew" data-toggle="modal" data-target="#ModalUsuario">
   																Pesquisar
 																</button>
-															
 
                                                     	</form>
                                                     </div>
@@ -117,12 +115,11 @@
    </div>
    
    
-   
    <div class="modal fade" id="ModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pesquisar Usuário</h5>
+        <h5 class="modal-title" id="exampleModalUsuario">Pesquisar Usuário</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -136,8 +133,8 @@
     <button class="btn btn-danger" type="button" onclick="limparInput()">Limpar</button>
   		</div>
 		</div>
-		
-		<table class="table">
+		<div style="height: 300px; overflow:scroll;">
+		<table class="table" id="tabelaresultados">
 		<thead>
 		<tr>
 			<th scope="col">ID</th>
@@ -147,10 +144,16 @@
   		</tr>
 		</thead>
   <tbody>
+  		<tr>
+  		<td> *********** </td>
+  		<td> *********** </td>
+  		<td> *********** </td>
+  		<td> *********** </td>
+  		</tr>
   		
   </tbody>
 		</table>
-  
+  </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -162,7 +165,6 @@
 <jsp:include page="javascriptfile.jsp"></jsp:include>
 
 <script type="text/javascript">
-
 // LIMPAR TODOS OS DADOS DO FORMULARIO
 function limparForm(){
 		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
@@ -176,21 +178,32 @@ function limparInput(){
 		var input = document.getElementById("input").value= '';
 }
 
-function buscarUsuario(){
+/*
+  
+  function buscarUsuario(){
 	var nome = document.getElementById("input").value;
 	
 	if(nome != null && nome != '' && nome.trim() != ''){
-
 		 var urlAction = document.getElementById('formUser').action;
 		
 		 $.ajax({
 		     
 		     method: "get",
 		     url : urlAction,
-		     data : "nomeBusca=" + nome + '&acao=buscarUser',
-		     
+		     data : "nome=" + nome + '&acao=buscarUser',
 		     success: function (response) {
-		    	 limparInput();
+			 
+			 var json = JSON.parse(response);
+			 
+			 
+			 $('#tabelaresultados > tbody > tr').remove();
+			 
+			  for(var p = 0; p < json.length; p++){
+			      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+<td>'+json[p].classe+'</td>+'</td> <td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+			  }
+			  
+			  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
+			 
 		     }
 		     
 		 }).fail(function(xhr, status, errorThrown){
@@ -199,7 +212,9 @@ function buscarUsuario(){
 		
 	}
 }
-
+ 
+ */
+ 
 </script>
 </body>
 

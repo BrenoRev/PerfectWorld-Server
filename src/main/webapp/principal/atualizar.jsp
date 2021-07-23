@@ -117,7 +117,7 @@
 // LIMPAR TODOS OS DADOS DO FORMULARIO
 function limparForm(){
 		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
-		for(p=0; p<elementos.length; p++){
+		for(p=1; p<elementos.length; p++){
 			elementos[p].value = '';
 		}
 			
