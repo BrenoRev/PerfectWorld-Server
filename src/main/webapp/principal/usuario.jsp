@@ -95,16 +95,17 @@
 																<br>
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Cadastrar</button>
          											    <button type="button" class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
-															<button type="button" class="btn waves-effect waves-light btn-info btn-skew" data-toggle="modal" data-target="#ModalUsuario">
-  																Pesquisar
-																</button>
-
-                                                    	</form>
-                                                    </div>
+         											     <button type="button" class="btn waves-effect waves-light btn-info btn-skew" data-toggle="modal" data-target="#exampleModalUsuario" onclick="limparInput();">Pesquisar</button>
+                                                        </form> 
+                                                       
+                                                   
                                                 </div>
-                                            </div>
-                                            <span> ${msg}</span>
-                                        </div>    
+                                                </div>
+                                                </div>
+                                                </div>
+                                                <span id="msg">${msg}</span>
+                                                
+                                    </div>
                                     <!-- Page-body end -->
                                 </div>
                                 <div id="styleSelector"> </div>
@@ -116,15 +117,13 @@
         </div>
     </div>
    
-   </div>
+<jsp:include page="javascriptfile.jsp"></jsp:include>
    
-
-   
-   <div class="modal fade" id="ModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="exampleModalUsuario"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalUsuario">Pesquisar Usuário</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Pesquisar Usuário</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -132,39 +131,28 @@
       <div class="modal-body">
       
         <div class="input-group">
-  <input type="text" class="form-control" id="input" placeholder="Nome" aria-label="nome" aria-describedby="basic-addon2">
+  <input type="text" class="form-control" id="nomeBusca" placeholder="Nome" aria-label="nome" aria-describedby="basic-addon2">
   		<div class="input-group-append">
     <button class="btn btn-success" type="button" onclick="buscarUsuario();">Pesquisar</button>
-    <button class="btn btn-danger" type="button" onclick="limparInput();">Limpar</button>
+    <button class="btn btn-danger" type="button" onclick="limparInput()">Limpar</button>
   		</div>
 		</div>
-		<div style="height: 300px; overflow:scroll;">
 		
+		<div style="height: 300px;overflow-y: scroll;" >
 		<table class="table" id="tabelaresultados">
 		<thead>
 		<tr>
-		<td>ID</td>
-		<td>Nome</td>
-		<td>Classe</td>
-		<td>#</td>
+	  <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Classe</th>
+      <th scope="col"></th>
   		</tr>
 		</thead>
   <tbody>
-<%
-List<ModelLogin> lista = (List) request.getAttribute("lista");
-%>
-
-  <c:forEach var="registro" items="${lista}">
-  	<tr>
-  		<td>${registro.id}</td>
-  		<td>${registro.nome}</td>
-  		<td>${registro.classe}</td>	
-  	</tr>
-  </c:forEach>
-  	
   </tbody>
 		</table>
   </div>
+  <span id="totalResultados"></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -172,10 +160,9 @@ List<ModelLogin> lista = (List) request.getAttribute("lista");
     </div>
   </div>
 </div>
+   
 
 
-
-<jsp:include page="javascriptfile.jsp"></jsp:include>
 
 <script type="text/javascript">
 
@@ -189,28 +176,48 @@ function limparForm(){
 }
 
 function limparInput(){
-		var input = document.getElementById("input").value= '';
-}
-  
-  function buscarUsuario(){
-	var nome = document.getElementById("input").value;
+	var input = document.getElementById("nomeBusca").value= '';
 	
-	if(nome != null && nome != '' && nome.trim() != ''){
-		 var urlAction = document.getElementById('formUser').action;
-		 $.ajax({
-		     
-		     method: "get",
-		     url : urlAction,
-		     data : "nome=" + nome + '&acao=buscarUser',
-		     success: function (response) {
-		    	 alert("sucesso");
-		     }	 
+	$('#tabelaresultados > tbody > tr').remove();
+	     
+}
+
+
+function buscarUsuario() {
+	
+    var nomeBusca = document.getElementById('nomeBusca').value;
+    
+    if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ /*Validando que tem que ter valor pra buscar no banco*/
+	
+	 var urlAction = document.getElementById('formUser').action;
+	
+	 $.ajax({
+	     
+	     method: "get",
+	     url : urlAction,
+	     data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
+	     success: function (response) {
 		 
-		 }).fail(function(xhr, status, errorThrown){
-		    alert('Erro ao buscar usuário por nome: ' + xhr.responseText + status + errorThrown);
-		 });
-		
-	}
+		 var json = JSON.parse(response);
+		 
+		 
+		 $('#tabelaresultados > tbody > tr').remove();
+		 
+		  for(var p = 0; p < json.length; p++){
+		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td>'+json[p].classe+'</td> <td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+		  }
+		  
+		  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
+		 
+	     }
+	     
+	 }).fail(function(xhr, status, errorThrown){
+	    alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
+	 });
+	
+	
+    }
+    
 }
  
 </script>

@@ -1,8 +1,10 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.sql.SQLException;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
@@ -26,27 +28,48 @@ public class ServeletRegistroController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
 		String acao = request.getParameter("acao");
-	if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUser")) {
+		
+		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {
+
+		String nomeBusca = request.getParameter("nomeBusca");
+		 
+		 List<ModelLogin> dadosJsonUser;
+		
+		 dadosJsonUser = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
+		 
+		 ObjectMapper mapper = new ObjectMapper();
+		 
+		 String json = mapper.writeValueAsString(dadosJsonUser);
+		 
+		 response.getWriter().write(json);
+	}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+		/*
 		String nomeBusca = request.getParameter("nome");
 		List<ModelLogin> listaNomes = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
 		request.setAttribute("lista", listaNomes);
+		RequestDispatcher redirecionar = request.getRequestDispatcher("principal/usuario.jsp");
+	
+		System.out.println(listaNomes);
+		System.out.println(nomeBusca);
+		System.out.println(acao);
 		
-
-		System.out.println("lista nomes: " + listaNomes);
-		System.out.println("nome busca: "+ nomeBusca);
-		System.out.println("acao: " +acao);
+		ObjectMapper mapper = new ObjectMapper();
+		 
+		String json = mapper.writeValueAsString(listaNomes);
+		 
+		response.getWriter().write(json);
+		 
+		 redirecionar.forward(request, response);*/
 	
-	}
 	
-	//request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-	}catch(Exception e) {
-			e.printStackTrace();
-			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
-			request.setAttribute("msg", e.getMessage());
-			redirecionar.forward(request, response);
-		}
-	}
+		
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
