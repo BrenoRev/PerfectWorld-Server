@@ -56,30 +56,69 @@ public class DAOUsuarioRepository {
 		return modelLogin;
 	}
 	
+	public ModelLogin consultaUsuarioId(String id) throws SQLException {
+		ModelLogin modelLogin = new ModelLogin(); 
+		String sql = "SELECT * FROM model_login WHERE id = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setLong(1, Long.parseLong(id));
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()) {
+			modelLogin.setId(resultSet.getLong("id"));
+			modelLogin.setNome(resultSet.getString("nome"));
+			modelLogin.setEmail(resultSet.getString("email"));
+			modelLogin.setClasse(resultSet.getString("classe"));
+			modelLogin.setLogin(resultSet.getString("login"));
+			modelLogin.setSenha(resultSet.getString("senha"));
+		}
+		
+		return modelLogin;
+	}
+	
 	public List<ModelLogin> buscarUsuarioList(String nome) throws SQLException{
 		
 		List<ModelLogin> usuarios = new ArrayList<>();
 		
-		String sql = "SELECT id, login, senha, email, nome, classe FROM model_login WHERE upper(nome) like upper(?)";
+		if(nome.equalsIgnoreCase("x")) {
+			String sql = "SELECT id, login, senha, email, nome, classe FROM model_login";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet result = preparedStatement.executeQuery();
+			
+			while(result.next()) {
+				ModelLogin m = new ModelLogin();
+				m.setId(result.getLong("id"));
+				m.setLogin(result.getString("login"));
+				m.setEmail(result.getString("email"));
+				m.setClasse(result.getString("classe"));
+				m.setSenha("********");
+				m.setNome(result.getString("nome"));
+				usuarios.add(m);
+			}
+			connection.commit();
+			return usuarios;
 		
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, "%"+nome+"%");
-		
-		ResultSet result = preparedStatement.executeQuery();
-		
-		while(result.next()) {
-			ModelLogin m = new ModelLogin();
-			m.setId(result.getLong("id"));
-			m.setLogin(result.getString("login"));
-			m.setEmail(result.getString("email"));
-			m.setClasse(result.getString("classe"));
-			m.setSenha("********");
-			m.setNome(result.getString("nome"));
-			usuarios.add(m);
+		}else {
+			String sql = "SELECT id, login, senha, email, nome, classe FROM model_login WHERE upper(nome) like upper(?)";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, "%"+nome+"%");
+			ResultSet result = preparedStatement.executeQuery();
+
+			while(result.next()) {
+				ModelLogin m = new ModelLogin();
+				m.setId(result.getLong("id"));
+				m.setLogin(result.getString("login"));
+				m.setEmail(result.getString("email"));
+				m.setClasse(result.getString("classe"));
+				m.setSenha("********");
+				m.setNome(result.getString("nome"));
+				usuarios.add(m);
+			}
+			connection.commit();
+			return usuarios;
 		}
-		connection.commit();
-		return usuarios;
+		
 	}
+		
 	
 	public boolean validarLogin(String login) throws SQLException {
 

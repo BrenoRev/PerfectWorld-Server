@@ -51,23 +51,23 @@
                                                         <form method="post" class="form-material"  id="formUser" action="<%= request.getContextPath()%>/ServeletRegistroController">
                                                     	    <input type="hidden" name="acao" id="acao" value="">
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modLogin.login}">
+                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modelLogin.login}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login</label>
                                                             </div>
                                                             
                                                             <div class="form-group form-default">
-                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off" value="${modLogin.senha}">
+                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off" value="${modelLogin.senha}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Senha</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off" value="${modLogin.nome}">
+                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off" value="${modelLogin.nome}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Nome</label>
                                                             </div>
                                                             <div class="form-group form-default">
-                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off" value="${modLogin.email}">
+                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off" value="${modelLogin.email}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Email</label>
                                                             </div>
@@ -93,9 +93,15 @@
                                                                </div>
 																<br>
 																<br>
+																<div style="width: 350px;">
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Cadastrar</button>
          											    <button type="button" class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
          											     <button type="button" class="btn waves-effect waves-light btn-info btn-skew" data-toggle="modal" data-target="#exampleModalUsuario" onclick="limparInput();">Pesquisar</button>
+         											     </div>
+         											     <div style="width: 350px; padding-top: 30px;">
+															<a class="btn btn-dark stretched-link" href="deletar.jsp" >Deletar</a>
+																<a href="atualizar.jsp" class="btn btn-dark stretched-link" >Atualizar</a>
+															</div>
                                                         </form> 
                                                        
                                                    
@@ -103,8 +109,16 @@
                                                 </div>
                                                 </div>
                                                 </div>
-                                                <span id="msg">${msg}</span>
+                                                <p style="font-size: 1.2em">${msg}</p>
                                                 
+                                                <div id="aparecer" class="alert alert-primary" role="alert" style="height: fix-content; display: none; width: 300px; word-break: break-all;">
+                                               					<p style="width: fix-content;">ID: ${modLogin.id}</p>
+																<p style="width: fix-content;">Nome: ${modLogin.nome}</p>
+																<p style="width: fix-content;">Login: ${modLogin.login}</p>
+																<p style="width: fix-content;">Email: ${modLogin.email}</p>
+																<p style="width: fix-content;">Classe: ${modLogin.classe}</p>
+													</div>
+													
                                     </div>
                                     <!-- Page-body end -->
                                 </div>
@@ -118,66 +132,39 @@
     </div>
    
 <jsp:include page="javascriptfile.jsp"></jsp:include>
-   
-   <div class="modal fade" id="exampleModalUsuario"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pesquisar Usuário</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-        <div class="input-group">
-  <input type="text" class="form-control" id="nomeBusca" placeholder="Nome" aria-label="nome" aria-describedby="basic-addon2">
-  		<div class="input-group-append">
-    <button class="btn btn-success" type="button" onclick="buscarUsuario();">Pesquisar</button>
-    <button class="btn btn-danger" type="button" onclick="limparInput()">Limpar</button>
-  		</div>
-		</div>
-		
-		<div style="height: 300px;overflow-y: scroll;" >
-		<table class="table" id="tabelaresultados">
-		<thead>
-		<tr>
-	  <th scope="col">ID</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Classe</th>
-      <th scope="col"></th>
-  		</tr>
-		</thead>
-  <tbody>
-  </tbody>
-		</table>
-  </div>
-  <span id="totalResultados"></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-   
 
-
+<jsp:include page="/principal/pesquisar.jsp"></jsp:include>
 
 <script type="text/javascript">
+
+	window.onload = function init() {
+		   var current = window.location;
+		   var s = current.href;
+		 if(s.indexOf("buscarEditar") > -1){
+			 var display = document.getElementById('aparecer').style.display = 'block';
+		 }
+} 
+			
+
+function verEditar(id){
+	var urlAction = document.getElementById('formUser').action;
+	 window.location.href = urlAction + '?acao=buscarEditar&id=' +id;
+	}
+
 
 // LIMPAR TODOS OS DADOS DO FORMULARIO
 function limparForm(){
 		var elementos = document.getElementById("formUser").elements; // retorna um array de elementos do form
 		for(p=0; p<elementos.length; p++){
 			elementos[p].value = '';
+		
 		}
-			
+		
 }
 
 function limparInput(){
 	var input = document.getElementById("nomeBusca").value= '';
-	
+	document.getElementById('totalResultados').innerHTML = '';
 	$('#tabelaresultados > tbody > tr').remove();
 	     
 }
@@ -204,7 +191,7 @@ function buscarUsuario() {
 		 $('#tabelaresultados > tbody > tr').remove();
 		 
 		  for(var p = 0; p < json.length; p++){
-		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td>'+json[p].classe+'</td> <td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td>'+json[p].classe+'</td> <td><button onclick="verEditar('+json[p].id+')" type="button" class="btn btn-info">Ver</button></td></tr>');
 		  }
 		  
 		  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;

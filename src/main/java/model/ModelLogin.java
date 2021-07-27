@@ -63,8 +63,8 @@ public class ModelLogin implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "ModelLogin [id=" + id + ", nome=" + nome + ", email=" + email + ", login=" + login + ", senha=" + senha
-				+ ", classe=" + classe + "]";
+		return "[ ID = " + id + "\n | Nome = " + nome + "\n | Email = " + email + "\n | Login = " + login +
+				"\n | Classe = " + classe + " ]";
 	}
 	@Override
 	public int hashCode() {

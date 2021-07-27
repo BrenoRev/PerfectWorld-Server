@@ -1,6 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
@@ -23,8 +27,35 @@ public class ServeletAtualizarController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+		try {
+			
+			String acao = request.getParameter("acao");
+			
+			if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {
+
+			String nomeBusca = request.getParameter("nomeBusca");
+			 
+			 List<ModelLogin> dadosJsonUser;
+			
+			 dadosJsonUser = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
+			 
+			 ObjectMapper mapper = new ObjectMapper();
+			 
+			 String json = mapper.writeValueAsString(dadosJsonUser);
+			 
+			 response.getWriter().write(json);
+		} else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
+			String id = request.getParameter("id");
+			ModelLogin model = daoUsuarioRepository.consultaUsuarioId(id);
+			request.setAttribute("modLogin", model);
+			RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+			redireciona.forward(request, response);
+		}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

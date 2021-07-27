@@ -27,9 +27,9 @@ public class ServeletRegistroController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			
 		String acao = request.getParameter("acao");
+		
+		try {
 		
 		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {
 
@@ -45,31 +45,19 @@ public class ServeletRegistroController extends HttpServlet {
 		 
 		 response.getWriter().write(json);
 	}
+		else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
+			String id = request.getParameter("id");
+			ModelLogin model = daoUsuarioRepository.consultaUsuarioId(id);
+			request.setAttribute("modLogin", model);
+			RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+			redireciona.forward(request, response);
+		}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-		/*
-		String nomeBusca = request.getParameter("nome");
-		List<ModelLogin> listaNomes = daoUsuarioRepository.buscarUsuarioList(nomeBusca);
-		request.setAttribute("lista", listaNomes);
-		RequestDispatcher redirecionar = request.getRequestDispatcher("principal/usuario.jsp");
 	
-		System.out.println(listaNomes);
-		System.out.println(nomeBusca);
-		System.out.println(acao);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		 
-		String json = mapper.writeValueAsString(listaNomes);
-		 
-		response.getWriter().write(json);
-		 
-		 redirecionar.forward(request, response);*/
-	
-	
-		
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -98,6 +86,7 @@ public class ServeletRegistroController extends HttpServlet {
 		}
 		
 		request.setAttribute("msg", msg);
+		request.setAttribute("modelLogin", modelLogin);
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
 		
 		// CRIA UM ATRIBUTO COM TODOS OS PARAMETROS PARA SER MOSTRADO NA TELA
