@@ -50,7 +50,7 @@ public class FilterAutenticacao implements Filter {
 		// SE O USUARIO NÃO ESTIVER LOGADO VAI REDIRECIONAR PARA O INDEX E MOSTRAR A MENSAGEM
 		if(usuarioLogado == null || usuarioLogado.equals("null") && 
 				!urlParaAutenticar.equalsIgnoreCase("/principal/ServeletLogin")) {
-			RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp?url=" + urlParaAutenticar);
+			RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp");
 			request.setAttribute("msg", "Realize o login!");
 			redireciona.forward(request, response);
 			return; // PARA A EXECUÇÃO E REDIRECIONA PARA O LOGIN
