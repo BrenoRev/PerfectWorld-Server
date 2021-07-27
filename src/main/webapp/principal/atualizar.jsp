@@ -92,7 +92,6 @@
 																<div style="width: 350px;">
          											   <button class="btn waves-effect waves-light btn-primary btn-skew">Atualizar</button>
 														<button type="button" class="btn waves-effect waves-light btn-secondary btn-skew" onclick="limparForm()" >Limpar</button>
-	 <button type="button" class="btn waves-effect waves-light btn-info btn-skew" data-toggle="modal" data-target="#exampleModalUsuario" onclick="limparInput();">Pesquisar</button>
 	 </div>
 	 <div style="width: 350px; padding-top: 30px;">
 															<a class="btn btn-dark stretched-link" href="usuario.jsp" >Cadastro</a>
@@ -103,14 +102,7 @@
                                                 </div>
                                             </div>
                                             <p style="font-size: 1.2em">${msg}</p>
-                                                
-                                                <div id="aparecer" class="alert alert-primary" role="alert" style="height: fix-content; display: none; width: 300px; word-break: break-all;">
-                                               					<p style="width: fix-content;">ID: ${modLogin.id}</p>
-																<p style="width: fix-content;">Nome: ${modLogin.nome}</p>
-																<p style="width: fix-content;">Login: ${modLogin.login}</p>
-																<p style="width: fix-content;">Email: ${modLogin.email}</p>
-																<p style="width: fix-content;">Classe: ${modLogin.classe}</p>
-													</div>
+                                             
                                         </div>    
                                     <!-- Page-body end -->
                                 </div>
@@ -126,7 +118,7 @@
    </div>
    
 <jsp:include page="javascriptfile.jsp"></jsp:include>
-<jsp:include page="/principal/pesquisar.jsp"></jsp:include>
+
 <script type="text/javascript">
 
 window.onload = function init() {
@@ -159,40 +151,6 @@ function limparInput(){
 }
 
 
-function buscarUsuario() {
-	
-    var nomeBusca = document.getElementById('nomeBusca').value;
-    
-    if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ /*Validando que tem que ter valor pra buscar no banco*/
-	
-	 var urlAction = document.getElementById('formUser').action;
-	
-	 $.ajax({
-	     
-	     method: "get",
-	     url : urlAction,
-	     data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
-	     success: function (response) {
-		 
-		 var json = JSON.parse(response);
-		 
-		 
-		 $('#tabelaresultados > tbody > tr').remove();
-		 
-		  for(var p = 0; p < json.length; p++){
-		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td>'+json[p].classe+'</td> <td><button onclick="verEditar('+json[p].id+')" type="button" class="btn btn-info">Ver</button></td></tr>');
-		  }
-		  
-		  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
-		 
-	     }
-	     
-	 }).fail(function(xhr, status, errorThrown){
-	    alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
-	 });
-	
-	
-    }
     
 }
 </script>
