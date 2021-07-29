@@ -36,7 +36,6 @@
 		padding-top:5%;
 		font-size: 1.2em;
 		left:5em;
-		color: red;
 		}
 		
 		#button{
@@ -81,9 +80,12 @@
      
 </div>
 
-		<input id="button" type="submit" value="Entrar" class="btn btn-primary"></input>
-
+		<input id="button" type="submit" value="Entrar" class="btn btn-primary">
+			<button id="button" type="button" class="btn btn-secondary" onclick="window.location.href='registroinicial.jsp'">Registro</button>
+ 			<button id="button" type="button" class="btn btn-secondary" onclick="recuperar()">Recuperar</button>
+	
 	</form>
+
 	<h4 id="mensagem">${msg}</h4>
 </div>
 	
@@ -92,6 +94,13 @@
     
     	<!--  //Script de Validação dos campos do input -->
     <script type="text/javascript">
+    
+    function recuperar(){
+    	alert("Relaxe e tente novamente!")
+    }
+    
+  
+    
     (function () {
       'use strict'
 

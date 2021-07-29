@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-
 <jsp:include page="head.jsp"></jsp:include>
 
   <body>
