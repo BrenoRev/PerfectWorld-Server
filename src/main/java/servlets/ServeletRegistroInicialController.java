@@ -46,12 +46,12 @@ public class ServeletRegistroInicialController extends HttpServlet {
 		modelLogin.setLogin(login);
 		
 		if(daoUsuarioRepository.validarLogin(modelLogin.getLogin())) {
-			msg = "Já existe um usuário com o mesmo login!";
+			msg = "Já Existe um usuário com o mesmo login!";
 			request.setAttribute("msg", msg);
 			RequestDispatcher redireciona = request.getRequestDispatcher("registroinicial.jsp");
 			redireciona.forward(request, response);
 		}else {
-				msg = "Usuario criado com sucesso, faça o seu login!";
+				msg = "Usuario criado com sucesso";
 				daoUsuarioRepository.gravarUsuario(modelLogin);
 				request.setAttribute("msg", msg);
 				RequestDispatcher redireciona = request.getRequestDispatcher("index.jsp");

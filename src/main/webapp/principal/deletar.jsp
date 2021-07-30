@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
+<link rel="shortcut icon" href="images/pwicon.png" />
 <jsp:include page="head.jsp"></jsp:include>
 
   <body>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="images/pwicon.png" />
 <meta charset="ISO-8859-1">
 <title>Tela de Erros</title>
 	<style type="text/css">

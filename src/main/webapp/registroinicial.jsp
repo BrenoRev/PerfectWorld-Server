@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/pwicon.png" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>Registro PW</title>
 
@@ -133,7 +134,7 @@
                                                 </div>
                                                 </div>
                                                 </div>
-                                                <p style="font-size: 0.8em; padding: 20px;">${msg}</p>
+                                                <p style="font-size: 1em; padding: 20px;">${msg}</p>
 													
                                     </div>
                                     <!-- Page-body end -->
