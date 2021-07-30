@@ -334,7 +334,7 @@ b, strong {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 .page-header {
-  background-image: url("../images/breadcrumb-bg.jpg");
+  background-image: url("../images/backg.jpg");
   background-size: cover;
   position: relative;
   border-radius: 0;
@@ -6001,7 +6001,7 @@ table tbody .border-bottom-info td {
       height: 100% !important; } }
   .main-menu .main-menu-header {
     padding: 15px 0;
-    background-image: url("../images/user-bg.jpg");
+    background-image: url("../images/usuario-bg.jpg");
     background-size: cover;
     text-align: center;
     position: relative; }
@@ -8413,7 +8413,7 @@ body[themebg-pattern="theme6"] {
 .pcoded[theme-layout="vertical"][vertical-nav-type="fullpage"] .pcoded-main-container, .pcoded[theme-layout="vertical"][vnavigation-view="view3"] .pcoded-main-container {
   position: static; }
 .pcoded .pcoded-header[header-theme="theme1"] {
-  background: #448aff; }
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); }
   .pcoded .pcoded-header[header-theme="theme1"] .input-group-addon,
   .pcoded .pcoded-header[header-theme="theme1"] a {
     color: #fff; }

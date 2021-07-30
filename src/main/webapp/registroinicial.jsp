@@ -13,7 +13,7 @@
 	
 		@font-face {
    			font-family: chicagopolice;
-  			src: url("images/Chicago Police Font.otf");
+  			src: url("images/Oswald-VariableFont_wght.ttf");
 		}
 		
 		body{
@@ -76,26 +76,30 @@
                                                     	    <input type="hidden" name="acao" id="acao" value="">
                                                             <div class="form-group form-default">
                                                             <label class="float-label">Login</label>
-                                                                <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off">
+                                                                <input type="text" minlength="6" maxlength="30" name="login" id="login" class="form-control" required="required" autocomplete="off">
+                                                                <small id="help" class="form-text text-muted">No mínimo 6 caracteres.</small>
                                                                 <span class="form-bar"></span>
                                                                 
                                                             </div>
                                                             
                                                             <div class="form-group form-default">
                                                              <label class="float-label">Senha</label>
-                                                                <input type="password" name="senha" id="senha" class="form-control" required="required" autocomplete="off">
+                                                                <input type="password" minlength="8" maxlength="20" name="senha" id="senha" class="form-control" required="required" autocomplete="off">
+                                                                 <small id="help" class="form-text text-muted">No mínimo 8 caracteres.</small>
                                                                 <span class="form-bar"></span>
                                                                
                                                             </div>
                                                             <div class="form-group form-default">
-                                                             <label class="float-label">Nome</label>
-                                                                <input type="text" name="nome" id="nome" class="form-control" required="required" autocomplete="off">
+                                                             <label class="float-label">Primeiro Nome</label>
+                                                                <input type="text" minlength="4" maxlength="20" name="nome" id="nome" class="form-control" required="required" autocomplete="off">
+                                                                 <small id="help" class="form-text text-muted">No mínimo 4 caracteres.</small>
                                                                 <span class="form-bar"></span>
                                                                
                                                             </div>
                                                             <div class="form-group form-default">
                                                               <label class="float-label">Email</label>
-                                                                <input type="email" name="email" id="email" class="form-control" required="required" autocomplete="off">
+                                                                <input type="email" minlength="10" maxlength="50" name="email" id="email" class="form-control" required="required" autocomplete="off">
+                                                                 <small id="help" class="form-text text-muted">Insira um email correto</small>
                                                                 <span class="form-bar"></span>
                                                               
                                                             </div>

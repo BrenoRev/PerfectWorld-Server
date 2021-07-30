@@ -13,9 +13,9 @@
 	
 		@font-face {
    			font-family: chicagopolice;
-  			src: url("images/Chicago Police Font.otf");
+  			src: url("images/Oswald-VariableFont_wght.ttf");
 		}
-		
+
 		body{
 		background-image: url("images/background.jpg");
 		font-family: chicagopolice,Arial;
