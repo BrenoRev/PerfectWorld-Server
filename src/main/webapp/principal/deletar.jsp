@@ -61,8 +61,8 @@
 														 <button type="button" class="btn waves-effect waves-light btn-danger btn-skew" data-toggle="modal" data-target="#exampleModalUsuario" onclick="limparInput();">Excluir por Pesquisa</button>
 															</div>
 															<div style="width: 350px; padding-top: 30px;">
-															<a class="btn btn-dark stretched-link" href="usuario.jsp" >Cadastro</a>
-																<a href="atualizar.jsp" class="btn btn-dark stretched-link" >Atualizar</a>
+															<a class="btn btn-dark stretched-link" href="<%= request.getContextPath()%>/principal/usuario.jsp" >Cadastro</a>
+																<a href="<%= request.getContextPath()%>/principal/atualizar.jsp" class="btn btn-dark stretched-link" >Atualizar</a>
 															</div>
                                                     	</form>
                                                     </div>

@@ -84,6 +84,7 @@
 		<input id="button" type="submit" value="Entrar" class="btn btn-primary">
 			<button id="button" type="button" class="btn btn-secondary" onclick="window.location.href='registroinicial.jsp'">Registro</button>
  			<button id="button" type="button" class="btn btn-secondary" onclick="recuperar()">Recuperar</button>
+ 			<a href="erro.jsp">Error</a>
 	
 	</form>
 
