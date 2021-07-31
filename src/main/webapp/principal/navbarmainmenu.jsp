@@ -9,7 +9,7 @@
                           <div class="">
                               <div class="main-menu-header">
                                   <img class="img-80 img-radius" src="<%= request.getContextPath() %>/assets/images/imagem-profile.jpg" alt="User-Profile-Image">
-                                     <p style="color:white; padding:20px;"><%= request.getSession().getAttribute("usuario") %></p>
+                                     <h1 style="color:white; padding:20px;"><%= request.getSession().getAttribute("usuario") %></h1>
                               </div>
          
                               

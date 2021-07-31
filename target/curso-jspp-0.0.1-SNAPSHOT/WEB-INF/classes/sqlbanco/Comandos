@@ -1,0 +1,25 @@
+----------------------------------------------------------------------------------------------------
+					// CRIAÇÃO DO BANCO DE DADOS
+----------------------------------------------------------------------------------------------------
+
+CREATE DATABASE "curso-jsp"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+    
+----------------------------------------------------------------------------------------------------
+					// CRIAÇÃO DA TABELA PRINCIPAL DO PROJETO
+----------------------------------------------------------------------------------------------------
+
+CREATE TABLE model_login(
+	id serial PRIMARY KEY,
+	login varchar(200) NOT NULL,
+	senha varchar(200) NOT NULL,
+	email varchar(200) NOT NULL,
+	nome varchar(200) NOT NULL,
+	classe varchar(200) NOT NULL
+);
